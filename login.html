@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #738393, #267c81);
+    }
+
+    .login-box {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        width: 320px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .login-box h2 {
+        margin-bottom: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .input-group label {
+        font-size: 14px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    .input-group input:focus {
+        border-color: #4facfe;
+        box-shadow: 0 0 5px #4facfe;
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 35px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #555;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #4facfe;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #00c6ff;
+    }
+
+    .message {
+        margin-top: 10px;
+        font-size: 14px;
+        color: red;
+    }
+
+    .success {
+        color: green;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+    <h2>Login</h2>
+
+    <form id="loginForm">
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+        </div>
+
+        <div class="input-group password-wrapper">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter password">
+            <span class="toggle-password" onclick="togglePassword()">Show</span>
+        </div>
+
+        <button type="submit">Login</button>
+        <a href="signup.html">Don't have an account? Sign Up</a>
+        <p id="message" class="message"></p>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const savedEmail=localStorage.getItem("userEmail");
+        const savedPassword=localStorage.getItem("userPassword");
+
+        if(email===savedEmail && password === savedPassword){
+            message.textContent = "Login Successful";
+            message.style.color ="green";
+
+            setTimeout(()=> {
+                window.location.href = "project.html";
+            },1000);
+        } else{
+            message.textContent = "Invalid email or password!";
+            message.style.color = "red";
+        }
+
+        // Validation
+        if (email === "" || password === "") {
+            message.textContent = "All fields are required!";
+            message.classList.remove("success");
+        } else if (password.length < 5) {
+            message.textContent = "Password must be at least 6 characters!";
+            message.classList.remove("success");
+        } else {
+            message.textContent = "Login successful!";
+            message.classList.add("success");
+
+            setTimeout(() => {
+                alert("Welcome!");
+            }, 500);
+        }
+    });
+
+    function togglePassword() {
+        const passwordField = document.getElementById("password");
+        const toggleText = document.querySelector(".toggle-password");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleText.textContent = "Hide";
+        } else {
+            passwordField.type = "password";
+            toggleText.textContent = "Show";
+        }
+    }
+</script>
+
+</body>
+</html>

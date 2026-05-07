@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ORDER FOOD</title>
+    <link rel="shortcut icon" href="image/my logo.png" type="images/x-icon">
+    <style>
+        body {
+            font-family: Arial;
+            margin:0;
+            background:linear-gradient(to right,grey,white);
+            text-align:center;
+        }
+        .header{
+            text-align: left;
+            padding-left: 20px;
+        }
+        .header img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+        h2 {
+            margin-top: 30px;
+            color:#333;
+        }
+        
+        .tab{
+            display:flex;
+            justify-content:center;
+            margin-top:30px;
+            gap:10px;
+        }
+
+        .tab button {
+            background-color: #9c5d5d;
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            font-size:16px;
+            border-radius:25px;
+            transition:all 0.3s ease;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            
+        }
+
+        .tab button:hover {
+            background-color: #bbb;
+            color:white;
+            transform:translate(3px);
+        }
+
+        .tab button.active {
+            background-color: #333;
+            color: white;
+        }
+
+        .tabcontent {
+            display: flex;
+            padding: 20px;
+            border: 1px solid #333;
+            border-top: none;
+            margin:30px auto;
+            width: 60%;
+            background:white;
+            border-radius: 15px;
+            box-shadow:0 6px 20px rgba(0,0,0,0.15);
+            animation: fadeEffect 0.5s ease-in-out;
+        }
+    
+        @keyframes fadeEffect {
+            from{opacity:0;}
+            to{opacity:1;}
+        }
+        img{
+            margin-top:15px;
+            border-radius:10px;
+        }
+        .card-container{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+            margin-top:15px;
+        }
+
+        .card{
+            background:white;
+            padding:15px;
+            width:180px;
+            border-radius:15px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .card:hover{transform:translate(-5px);}
+
+        .card img{
+            width:100%;
+            height: 130px;
+            border-radius:10px;
+        }
+
+        .card button{
+            margin-top:10px;
+            padding:8px 15px;
+            border:none;
+            border-radius:20px;
+            background: #ff7e5f;
+            color:white;
+        }
+
+        .card button:hover{background:#333;}
+        .card p{
+            font-size: 14px;
+            color: #9c5d5d;
+        }
+
+        #totalBox{
+            margin-top:20px;
+            font-size:18px;
+            font-weight:bold;
+        }
+        #cartList li {
+    list-style: none;
+    margin: 10px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    animation: fadeIn 0.4s ease;
+}
+
+*{
+    transition:all 0.3s ease;
+}
+
+.card {
+    transform:scale(1);
+}
+
+.card:hover{
+    transform:scale(1.05)
+    translateY(-5px);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+@keyframes fadeIn{
+    from{
+    opacity:0;
+    transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.fade-out{
+    opacity: 0;
+    transform:translateX(50px);
+    transition:0.3s;
+}
+
+#cartList {
+    animation:slideUp 0.5s ease;
+}
+@keyframes slideUp{
+    from{
+        transform:translateY(30px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+.banner {
+    background: url('image/chip.png') no-repeat center;
+    background-size: cover;
+    height: 200px;
+    color: rgb(252, 243, 243);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.banner h1 {
+    font-size: 30px;
+}
+
+.banner p {
+    font-size: 18px;
+}
+    </style>
+</head>
+<body onLoad="document.querySelector('.tablinks').click()">
+    <div class="container">
+        <div class="header">
+            <img src="image/my logo.png" alt="order food" width="100" height="80">
+        </div>
+    </div>
+<h2>ORDER FOOD🚚</h2>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
+    <button class="tablinks" onclick="openTab(event, 'Services')">Our Services</button>
+    <button class="tablinks" onclick="openTab(event, 'About')">About Us</button>
+    <button class="tablinks" onclick="openTab(event, 'Contact')">Contact Us</button>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div id="Home" class="tabcontent">
+    <h3>WELCOME</h3>
+    <p>
+        Welcome to my website.
+        This is where you order your preferred food.
+    </p>
+    <div class="banner">
+    <h1>Delicious Food Delivered 🚚</h1>
+    <p>Order your favorite meals anytime quickly and easily</p>
+    </div>
+
+    <p>Welcome to our online food ordering website, where you can easily browse and order your favourite meals.
+        Choose from a wide variety of delicious foods and fruits and natural fresh juice, add them to your cart, and enjoy a fast and simple ordering experience anytime.
+    </p>
+
+    <h3>Featured items</h3>
+    <div class="card-container">
+        <div class="card">
+            <img src="image/pizza.png" alt="piza">
+            <h4>pizza</h4>
+            <p>cheesy and delicious pizza</p>
+        </div>
+        <div class="card">
+            <img src="image/juice.png">
+            <h4>fresh juice</h4>
+            <p>Natural and refreshing drink</p>
+        </div>
+        <div class="card">
+            <img src="image/baked.png">
+            <h4>cakes</h4>
+            <p>soft and sweet baked products</p>
+        </div>
+    </div>
+    <p>These are foods that we provide you with</p>
+    <p>Enjoy our delicious meals 🍽️</p>
+    <p style="margin-top:20px;">✨ More delicious items available in Our Services</p>
+</div>
+
+<div id="Services" class="tabcontent">
+<h3>OUR SERVICES</h3>
+<h3>Our Menu</h3>
+
+<h4>🍕Foods</h4>
+
+    <div class="card-container">
+        <div class="card">
+            <img src="image/🍕 .png" alt="pizza" width="50" height="50">
+            <h4>Pizza</h4>
+            <p>4000Frw</p>
+            <button onclick="orderItem('Pizza',4000)">Order</button>
+        </div>
+        
+        <div class="card">
+            <img src="image/spaghetti.png" alt="spaghetti" width="50" height="50">
+            <h4>Spaghetti</h4>
+            <p>4000Frw each</p>
+            <button onclick="orderItem('Spaghetti',200)">Order</button>
+        </div>
+        <div class="card">
+            <img src="image/image.png" alt="chicken" width="50" height="50">
+            <h4>Chicken</h4>
+            <p>10000Frw each</p>
+            <button onclick="orderItem('Chicken',10000)">Order</button>
+        </div>
+        <div class="card">
+            <img src="image/rice.png" alt="rice" width="50" height="50">
+            <h4>Rice</h4>
+            <p>3000Frw each</p>
+            <button onclick="orderItem('Rice',3000)">Order</button>
+        </div>
+        <div class="card">
+            <img src="image/burger.png" alt="burger" width="50" height="50">
+            <h4>Burger</h4>
+            <p>5000Frw each</p>
+            <button onclick="orderItem('Burger',5000)">Order</button>
+        </div>
+</div>
+
+
+<h4>🍹drinks</h4>
+<h5>Alcoholic Drinks</h5>
+<div class="card-container">
+    <div class="card">
+        <img src="image/beer.png" alt="beer" width="50" height="50">
+        <h4>Beer</h4>
+        <p>1500frw</p>
+        <button onclick="orderItem('Beer',1500)">Order</button>
+    </div>
+
+    <div class="card">
+        <img src="image/wine .png" alt="wine" width="50" height="70">
+        <h4>Wine</h4>
+        <p>30000frw</p>
+        <button onclick="orderItem('Wine',30000)">Order</button>
+    </div>
+</div>
+
+<h5>Non-alcoholic Drinks</h5>
+<div class="card-container">
+    <div class="card">
+        <img src="image/juice.png" alt="juice" width="30" height="100">
+        <h4>Juice</h4>
+        <p>1000frw</p>
+        <button onclick="orderItem('Juice',1000)">order</button>
+    </div>
+    <div class="card">
+        <img src="image/🥛 .png" alt="milk" width="50" height="50">
+        <h4>Milk</h4>
+        <p>800frw</p>
+        <button onclick="orderItem('Milk',800)">order</button>
+    </div>
+    <div class="card">
+        <img src="image/fanta.png" alt="fanta" width="50" height="50">
+        <h4>Fanta</h4>
+        <p>1000frw</p>
+        <button onclick="orderItem('Fanta',1000)">Order</button>
+    </div>
+    <div class="card">
+        <img src="image/coffe.png" alt="coffee" width="50" height="50">
+        <h4>Coffee</h4>
+        <p>1000frw</p>
+        <button onclick="orderItem('Coffee',1000)">Order</button>
+    </div>
+    <div class="card">
+        <img src="image/Inyange (2).png" alt="water" width="50" height="50">
+        <h4>Water</h4>
+        <p>500frw</p>
+        <button onclick="orderItem('Water',500)">Order</button>
+    </div>
+</div>
+
+<h4>🥯baked products</h4>
+<div class="card-container">
+    <div class="card">
+        <img src="image/my cake.png" alt="cake">
+        <h4>cake</h4>
+        <p>7000frw</p>
+        <button onclick="orderItem('cake',7000)">order</button>
+    </div>
+    <div class="card">
+        <img src="image/donats.png" alt="donats" weight="50" height="50">
+        <h4>donats</h4>
+        <p>200Frw</p>
+        <button onclick="orderItem('donats',100)">order</button>
+    </div>
+    <div class="card">
+        <img src="image/cookies.png" alt="cookies" width="50" height="50">
+        <h4>cookie</h4>
+        <p>100frw</p>
+        <button onclick="orderItem('cookie',100)">order</button>
+    </div>
+    <div class="card">
+        <img src="image/chapati .png" alt="chapati" width="50" height="50">
+        <h4>Chapati</h4>
+        <p>200frw</p>
+        <button onclick="orderItem('Chapati',200)">order</button>
+    </div>
+    <div class="card">
+        <img src="image/bread.png" alt="bread" weight="50" height="50">
+        <h4>Bread</h4>
+        <p>2500frw</p>
+        <button onclick="orderItem('Bread',2500)">order</button>
+    </div>
+</div>
+
+
+<h4>Fruits</h4>
+<div class="card-container">
+    <div class="card">
+        <img src="image/apple.png" alt="apple" width="50" height="50">
+    <h4>Apple</h4>
+    <p>500fw</p>
+    <button onclick="orderItem('Apple',500)">Order</button>
+    </div>
+    <div class="card">
+        <img src="image/banana.png" alt="banana" width="50" height="50">
+        <h4>Banana</h4>
+        <p>200frw</p>
+        <button onclick="orderItem('Banana',200)">Order</button>
+    </div>
+    <div class="card">
+        <img src="image/ORANGE.jpg" alt="orange" width="50" height="50">
+        <h4>Orange</h4>
+        <p>300frw</p>
+        <button onclick="orderItem('Orange',300)">Order</button>
+    </div>
+</div>
+
+
+<div id="totalBox">
+    Total: <span id="totalAmount">0</span> Frw
+</div>
+
+<input type="text" id="customerName" placeholder="Enter your name" style="padding:10px; border-radius:10px; border:1px solid #333; margin-top:20px; width:200px;">
+<h3>🛒 Your Cart</h3>
+<ul id="cartList"></ul>
+
+<h3>Total: <span id="total">0</span> Frw</h3>
+<button onclick="checkout()" style="padding:10px 20px; border: none; background: #450563; color: white; border-radius: 10px; cursor: pointer;"> Checkout 💳</button>
+<button onclick="printCart()"
+style="padding: 10px 20px; border: none;background: #ff7e5f;color: antiquewhite; border-radius: 10px; cursor: pointer; margin-top: 10px;">
+🖨️ Print Receipt
+</button>
+</div>
+
+<div id="About" class="tabcontent">
+    <h3>About Us</h3>
+    <p>We provide fresh and delicious meals daily.</p>
+    <p> ✓Fast delivery</p>
+    <p> ✓Not exepensive</p>
+    <p> ✓Standard quality</p>
+    <p> ✓Available to everyone</p>
+</div>
+
+<div id="Contact" class="tabcontent">
+    <h3>Contact us on:</h3>
+    <p>Tel📞:0783680619</p>
+    <p>Email📧:singizwajoyeusecarine1@gmail.com</p>
+</div>
+</div>
+
+<script>
+    function logout(){
+        window.location.href = "login.html";
+    }
+
+    let slides = document.getElementsByClassName("slide");
+let currentSlide = 0;
+
+function showSlide(index) {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+    }
+    slides[index].classList.add("active");
+}
+
+    let cart=
+    JSON.parse(localStorage.getItem("cart"))
+    || [];
+    updateCart();
+
+    function orderItem(name, price){
+    
+        let existing =cart.find(item => item.name === name);
+
+        if (existing){
+            existing.quantity +=1;
+            existing.totalPrice +=price;
+        }else{
+            cart.push({
+                name:name,
+                price: price,
+                quantity: 1,
+                totalPrice: price
+            });
+        }
+        document.body.style.background = "#d4edda";
+        setTimeout(() =>{
+            document.body.style.background = "";
+        },200);
+
+    
+        updateCart();
+
+        alert(item + "added to cart!");
+    }
+    function updateCart(){
+        const cartList = document.getElementById("cartList");
+        const totalBox = document.getElementById("total");
+        localStorage.setItem("cart",JSON.stringify(cart));  
+
+        
+        cartList.innerHTML = "";
+
+        let total = 0;
+
+        cart.forEach((item, index)=>{
+            total += item.price * item.quantity;
+           
+            const li = document.createElement("li");
+            li.innerHTML = ` 
+            ${item.name} ${item.quantity}  amount:${item.totalPrice} Frw
+            <button onclick="increaseQty(${index})">➕</button>
+            <button onclick="decreaseQty(${index})">➖</button>
+            <button onclick="removeItem(${index})">❌</button>
+            `;
+            
+            cartList.appendChild(li);
+        });
+         totalBox.innerText = total;
+        totalBox.style.transform = "scale(1.2)";
+        setTimeout(() =>{
+            totalBox.style.transform = "scale(1)";
+        },200)
+    }
+
+        function printCart(){
+            if (cart.length === 0){
+                alert("Cart is empty");
+                return;
+            }
+            let customer= document.getElementById("customerName").value;
+            if (customer.trim() === ""){
+                alert("Please enter your name");
+                return;
+            }
+
+            let orderNumber = "ORD-" +Date.now();
+
+            let date = new Date().toLocaleString();
+            let total=0;
+            let itemsHTML ="";
+
+            cart.forEach(item =>{
+
+                itemsHTML += `<p>${item.name} = ${item.quantity} Amount: ${item.totalPrice} Frw</p>`;
+                total += item.totalPrice;
+            });
+            let content = `
+            <html>
+    <head>
+        <title>Receipt</title>
+        <style>
+            body {
+                font-family: Arial;
+                padding: 20px;
+                text-align: center;
+            }
+            h2 { color: #450563; }
+            p { font-size: 16px; }
+            hr { margin: 10px 0; }
+        </style>
+    </head>
+    <body>
+            <h2>
+                <img src="image/my logo.png" style="height:60px;"><br>
+                Food Order Receipt
+                </h2>
+            <p><strong>Order Number:</strong> ${orderNumber}</p>
+            <p><strong>Customer Name:</strong> ${customer}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <hr>
+
+            ${itemsHTML}
+
+            <hr>
+            <h3>Total: ${total} Frw</h3>
+            <p>Thank you for your order!</p>
+    </body>
+</html>
+            
+            `;
+
+            let printWindow = window.open('','', 'width=600,height=400');
+            printWindow.document.write(content);
+            printWindow.document.close();
+
+            printWindow.print();
+        }
+
+    function increaseQty(index) {
+        cart[index].quantity += 1;
+        cart[index].totalPrice += cart[index].price;
+        updateCart();
+    }
+
+    function decreaseQty(index){
+        cart[index].quantity -= 1;
+        cart[index].totalPrice -= cart[index].price;
+
+       
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        updateCart();
+
+    }
+    
+    function removeItem(index) {
+        const cartList = document.getElementById("cartList");
+
+        const item = cartLIst.children[index];
+        item.classList.add("fade-out");
+
+        setTimeout(() =>{
+            cart.spLice(index, 1);
+            updateCart();
+        }, 300);
+    
+    }
+
+    const totalBox = document.getElementById("totalAmount");
+    function checkout(){
+        if (cart.length === 0) {
+            alert("Cart is empty!");
+            return;
+        }
+        alert("Order placed successfully! 🎉");
+        cart = [];
+        updateCart();
+    }
+ 
+    // TABS
+function openTab(evt, tabName) {
+    let i, tabcontent, tablinks;
+
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+
+}
+</script>
+</body>
+<footer>&copy; 2026 Food Ordering</footer>
+</html>
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign Up</title>
+
+<style>
+body {
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: green;
+    color: white;
+    border: none;
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Create Account</h2>
+
+    <form id="signupForm">
+        <input type="text" id="username" placeholder="Username">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Sign Up</button>
+        <p id="msg"></p>
+    </form>
+
+    <a href="login.html">Already have an account? Login</a>
+</div>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let user = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "" || email === "" || pass === ""){
+        document.getElementById("msg").textContent = "Fill all fields!";
+    } else {
+    
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userPassword", pass);
+
+        document.getElementById("msg").textContent = "Account created!";
+
+    
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1000);
+    }
+});
+</script>
+
+</body>
+</html>
