@@ -499,6 +499,7 @@ function showSlide(index) {
             <button onclick="increaseQty(${index})">➕</button>
             <button onclick="decreaseQty(${index})">➖</button>
             <button onclick="removeItem(${index})">❌</button>
+            <button onclick="editItem(${index})">🖋️Edit</button>
             `;
             
             cartList.appendChild(li);
@@ -595,14 +596,30 @@ function showSlide(index) {
     function removeItem(index) {
         const cartList = document.getElementById("cartList");
 
-        const item = cartLIst.children[index];
+        const item = cartList.children[index];
         item.classList.add("fade-out");
 
         setTimeout(() =>{
-            cart.spLice(index, 1);
+            cart.splice(index, 1);
             updateCart();
         }, 300);
     
+    }
+
+    function editItem(index){
+        let newQty = prompt("Enter new quantity:");
+        newQty = parseInt(newQty);
+
+        if (isNaN(newQty) || newQty < 1) {
+            alert("Invalid quantity!");
+            return;
+        }
+
+        cart[index].quantity = newQty;
+        cart[index].totalPrice = cart[index].price * newQty;
+
+        updateCart();
+
     }
 
     const totalBox = document.getElementById("totalAmount");
